@@ -22,7 +22,7 @@ public class Menu {
 
     /**
      * Empty constructor, at least contains 1 eater
-     * 
+     *
      */
     public Menu() {
         this.eaters = 1;
@@ -31,14 +31,14 @@ public class Menu {
 
     /**
      * Constructor with number of eaters
-     * 
+     *
      * @param eaters Number of people to be sit on a table
      */
 
     public Menu(final int eaters) {
         this.dishes = new ArrayList<MenuDish>();
         this.eaters = eaters;
-        this.restaurantChart = loadChart(); // Initialize the restaurant chart
+        loadChart(); // Initialize the restaurant chart
     }
 
     public void addDishToMenu(final MenuDish dish) {
@@ -52,25 +52,29 @@ public class Menu {
     /**
      * Access external csv file with a list of delicious plates and random prices
      * generated in excel
-     * 
+     *
      * @return list of MenuDish where eaters will be able to select from
      */
-    private List<MenuDish> loadChart() {
+    private void loadChart() {
 
-    List<MenuDish> restaurantChart = new ArrayList<MenuDish>();
+        this.restaurantChart = new ArrayList<MenuDish>();
 
         try {
 
 
-            ClassLoader loader = Menu.class.getClassLoader();
-            System.out.println(loader.getResource("itinerari/restaurant/Menu.class"));
+            // final File f1 = new File("./resources/assets/menu.csv");
+            // String[] arr = f1.list();
+            // for (String string : arr) {
+            //     System.out.println(">>>>>>>>>>>>>>>>> " + string);
+            // }
 
-            final File myObj = new File("assets/menu.csv");
+            final File myObj = new File("./resources/assets/menu.csv");
             final Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 final String data = myReader.nextLine();
                 final String[] arrPlate = data.split(";");
                 final MenuDish menuDish = new MenuDish(arrPlate[0], Float.parseFloat(arrPlate[1]));
+                System.out.println(this.restaurantChart.size() );
                 this.restaurantChart.add(menuDish);
             }
             myReader.close();
@@ -78,8 +82,6 @@ public class Menu {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-        return restaurantChart;
 
     }
 
