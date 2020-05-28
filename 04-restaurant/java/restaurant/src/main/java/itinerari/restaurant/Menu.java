@@ -8,6 +8,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
+
+    final int MAX_SUGGESTIONS = 4;
     /**
      * Contains all the dishes our cook can make! :=)
      */
@@ -70,12 +72,12 @@ public class Menu {
             while (myReader.hasNextLine()) {
                 final String data = myReader.nextLine();
                 final String[] arrPlate = data.split(";");
-                final MenuDish menuDish = new MenuDish(arrPlate[0], Float.parseFloat(arrPlate[1]));
+                final MenuDish menuDish = new MenuDish(arrPlate[0], Float.parseFloat(arrPlate[1]) / 10);    // Adjusting prices
                 this.restaurantChart.add(menuDish);
             }
             myReader.close();
         } catch (final FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred while reading resource file.");
             e.printStackTrace();
         }
 
@@ -119,14 +121,14 @@ public class Menu {
         int i = 0;
         for (MenuDish dish : this.restaurantChart) {
             if (dish.getDishName().toLowerCase().contains(input.toLowerCase())) {
-                if(i < 4) {
+                if(i <= MAX_SUGGESTIONS) {
                     list.add(dish);
                     i++;
                 }
             }
         }
 
-        for (int j = list.size(); j <= 5; j++) {
+        for (int j = list.size(); j < MAX_SUGGESTIONS; j++) {
             list.add(this.getRandomSuggestion());
         }
 

@@ -96,13 +96,11 @@ public class MenuConsoleController implements MenuController {
      * Lets the user search a plate from Restaurant menu or choose from suggestions
      */
     public MenuDish searchForAPlate() {
-        final MenuDish suggestion = getRandomSuggestion();
         List<MenuDish> dishes;
-
+        MenuDish suggestion = menu.getRandomSuggestion();
         System.out.println(">>> Type what you'd like to eat (in Spanish). Random suggestion: " + suggestion);
         String inputText = sc.nextLine();
         dishes = searchPlates(inputText);
-        dishes.add(suggestion);
 
         System.out.println("*** These are some dishes you could like. Choose with number: ");
         MenuDish selected = null;
