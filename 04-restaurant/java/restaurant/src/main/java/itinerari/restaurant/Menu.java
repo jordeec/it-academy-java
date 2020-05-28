@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
@@ -21,12 +22,16 @@ public class Menu {
     private int eaters = 0;
 
     /**
-     * Empty constructor, at least contains 1 eater
+     * Indicates if the menu is ready to be ordered
+     */
+    private boolean isReadyToOrder;
+
+    /**
+     * Empty constructor, at least will contain 1 eater
      *
      */
     public Menu() {
-        this.eaters = 1;
-        new Menu(this.eaters);
+        this(1);
     }
 
     /**
@@ -38,6 +43,7 @@ public class Menu {
     public Menu(final int eaters) {
         this.dishes = new ArrayList<MenuDish>();
         this.eaters = eaters;
+        this.isReadyToOrder = false;
         loadChart(); // Initialize the restaurant chart
     }
 
@@ -53,20 +59,11 @@ public class Menu {
      * Access external csv file with a list of delicious plates and random prices
      * generated in excel
      *
-     * @return list of MenuDish where eaters will be able to select from
      */
-    private void loadChart() {
-
+    private synchronized void loadChart() {
         this.restaurantChart = new ArrayList<MenuDish>();
 
         try {
-
-
-            // final File f1 = new File("./resources/assets/menu.csv");
-            // String[] arr = f1.list();
-            // for (String string : arr) {
-            //     System.out.println(">>>>>>>>>>>>>>>>> " + string);
-            // }
 
             final File myObj = new File("./resources/assets/menu.csv");
             final Scanner myReader = new Scanner(myObj);
@@ -74,7 +71,6 @@ public class Menu {
                 final String data = myReader.nextLine();
                 final String[] arrPlate = data.split(";");
                 final MenuDish menuDish = new MenuDish(arrPlate[0], Float.parseFloat(arrPlate[1]));
-                System.out.println(this.restaurantChart.size() );
                 this.restaurantChart.add(menuDish);
             }
             myReader.close();
@@ -85,7 +81,56 @@ public class Menu {
 
     }
 
-	public void calcularPreu() {
-	}
+    public int getEaters() {
+        return this.eaters;
+    }
+
+    public boolean isReadyToOrder() {
+        return this.isReadyToOrder;
+    }
+
+    public void setReadyToOrder(boolean bool) {
+        this.isReadyToOrder = bool;
+    }
+
+    public List<MenuDish> getDishes() {
+        return this.dishes;
+    }
+
+    public int getNumberOfDishes() {
+        return this.dishes.size();
+    }
+
+    public List<MenuDish> getRestaurantChart() {
+        return this.restaurantChart;
+    }
+
+    public int getDishesInMenuChart() {
+        return this.restaurantChart.size();
+    }
+
+    public MenuDish getRandomSuggestion() {
+        Random rand = new Random();
+        return restaurantChart.get(rand.nextInt(restaurantChart.size()));
+    }
+
+    public List<MenuDish> searchPlates(String input) {
+        List<MenuDish> list = new ArrayList<MenuDish>();
+        int i = 0;
+        for (MenuDish dish : this.restaurantChart) {
+            if (dish.getDishName().toLowerCase().contains(input.toLowerCase())) {
+                if(i < 4) {
+                    list.add(dish);
+                    i++;
+                }
+            }
+        }
+
+        for (int j = list.size(); j <= 5; j++) {
+            list.add(this.getRandomSuggestion());
+        }
+
+        return list;
+    }
 
 }

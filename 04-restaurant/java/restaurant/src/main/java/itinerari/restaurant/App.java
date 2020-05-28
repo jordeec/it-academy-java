@@ -1,5 +1,8 @@
 package itinerari.restaurant;
 
+import itinerari.restaurant.controller.MenuConsoleController;
+import itinerari.restaurant.controller.MenuController;
+
 /**
  * Hello world!
  */
@@ -13,14 +16,10 @@ public final class App {
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        MenuController controller = new MenuConsoleController();
+        controller.askForMenu();        // Fase 1 i Fase 2 (demanar fins que no hi hagi mes comensals)
+        controller.checkOutPrice();     // Fase 3. Calcular preu i nombre de bitllets
 
-        Menu menu = demanarMenu(); // Fase 1 i Fase 2 (demanar fins que no hi hagi mes comensals)
-        menu.calcularPreu(); //
-    }
-
-    private static Menu demanarMenu() {
-        return new Menu();
     }
 
 }
