@@ -1,7 +1,28 @@
-
 var CIUTATS_MIN = 6;
 
-// 1 Omplir ciutats a la pàgina html 
+// Afegir event listener per a botó d'introduïr ciutat quan es presiona enter
+// Font: https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
+// Get the input field
+var input = document.getElementById("txtCity");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("btnAddCity").click();
+  }
+});
+
+input.focus();
+
+/**
+ * Implementació del botó d'afegir ciutats
+ * 
+ */
 function addCity() {
     let txtCity = document.getElementById("txtCity").value;
 
@@ -20,7 +41,7 @@ function addCity() {
     CIUTATS_MIN = CIUTATS_MIN - 1;
 
     /* Netejem el input d'entrada */
-    document.getElementById("txtCity").textContent = '';
+    document.getElementById("txtCity").value = '';
     document.getElementById("txtCity").focus();
 
     /* Habilitem botó de càlcul */
@@ -34,24 +55,23 @@ function addCity() {
 
 }
 
-//TODO: Afegir llista com a elements  <li class="list-group-item">element</li> passant-li el id de la <ul>
-function fillListWithItems(list) {
-
-}
+/**
+ * Implementació del botó de netejar camps
+ * 
+ */
 
 function resetFields() {
     console.log("Al reset");
     location.reload();
 }
 
-function fillPhases() {
-    console.log("Al fill Phases");
+/**
+ * Implementació del botó calcular (fases.js)
+ */
+function calcular() {
+    console.log("Calculant ... ");
+    fillPhases(document.getElementById("cities"));
+    console.log("Final de calcular ... ");
 
-    var ul = document.getElementById("cities");
-    var items = ul.getElementsByTagName("li");
-    for (var i = 0; i < items.length; ++i) {
-        // do something with items[i], which is a <li> element
-        console.log(items[i]);
-        
-    }
 }
+

@@ -6,7 +6,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Exercici de ciutats en Javascript</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src='ciutats.js'></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,10 +18,11 @@
         <div class="row justify-content-md-center">
             <div class="col-sm-10">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Entra el nom de la ciutat (falten 6)"
-                        aria-label="Entra el nom de la ciutat" aria-describedby="button-addon2" id="txtCity">
+                    <input type="text" class="form-control" placeholder="Entra el nom de la ciutat"
+                        aria-label="Entra el nom de la ciutat" aria-describedby="btnAddCity" id="txtCity">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="addCity()">Afegir</button>
+                        <button class="btn btn-outline-secondary" type="button" id="btnAddCity"
+                            onclick="addCity()">Afegir</button>
                     </div>
                 </div>
             </div>
@@ -31,15 +31,17 @@
             <p class="text-monospace" id="statusCities">Entra el nom de la ciutat (falten 6)</p>
         </div>
         <div class="row justify-content-md-center">
-            <div class="col col-lg-2"><button class="btn btn-primary" onclick="resetFields()">Reset</button></div>
-            <div class="col col-lg-2"><button class="btn btn-primary" onclick="fillPhases()" disabled id="btnCalcular">Calcular</button></div>
-        </div>
-        <div class="row justify-content-md-center">
             <div class="col col-sm-8">
-                <ol class="list-group" id="cities">                    
+                <ol class="list-group" id="cities">
                 </ol>
             </div>
         </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2"><button class="btn btn-primary" onclick="resetFields()">Reset</button></div>
+            <div class="col col-lg-2"><button class="btn btn-primary" onclick="calcular()" disabled
+                    id="btnCalcular">Calcular</button></div>
+        </div>
+
         <div class="row">
             <div class="col-sm-3">
                 <table class="table table-striped">
@@ -50,7 +52,7 @@
                         <tr>
                             <td>
                                 <ul class="list-group" id="phase1-results">
-                                    <li class="list-group-item list-group-item-action">Encara no has introduït cap ciutat a la llista</li>
+                                    <li class="list-group-item list-group-item-action">Necessito un mínim de 6 ciutats</li>
                                 </ul>
                             </td>
                         </tr>
@@ -66,7 +68,7 @@
                         <tr>
                             <td>
                                 <ul class="list-group" id="phase2-results">
-                                    <li class="list-group-item list-group-item-action">Encara no has introduït cap ciutat a la llista</li>                                    
+                                    <li class="list-group-item list-group-item-action">Necessito un mínim de 6 ciutats</li>
                                 </ul>
                             </td>
                         </tr>
@@ -82,8 +84,8 @@
                         <tr>
                             <td>
                                 <ul class="list-group" id="phase3-results">
-                                    <li class="list-group-item list-group-item-action">Encara no has introduït cap ciutat a la llista</li>
-                                    
+                                    <li class="list-group-item list-group-item-action">Necessito un mínim de 6 ciutats</li>
+
                                 </ul>
                             </td>
                         </tr>
@@ -99,8 +101,8 @@
                         <tr>
                             <td>
                                 <ul class="list-group" id="phase4-results">
-                                    <li class="list-group-item list-group-item-action">Encara no has introduït cap ciutat a la llista</li>
-                                    
+                                    <li class="list-group-item list-group-item-action">Necessito un mínim de 6 ciutats</li>
+
                                 </ul>
                             </td>
                         </tr>
@@ -113,9 +115,18 @@
 
 
 </body>
+<script src='./ciutats.js'></script>
+<script src='./fases.js'></script>
+
 <!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 
 </html>
