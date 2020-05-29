@@ -1,10 +1,12 @@
 package itinerari.restaurant.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import itinerari.restaurant.Menu;
 import itinerari.restaurant.MenuDish;
+import itinerari.restaurant.bitllets.Bitllet;
 
 public class MenuConsoleController implements MenuController {
 
@@ -24,14 +26,15 @@ public class MenuConsoleController implements MenuController {
             System.out.println("*** WELCOME TO IT-ACADEMY's RESTAURANT *********************");
             System.out.println("***                                                      ***");
             System.out.println(
-                    "*** You can currently choose amongst " + menu.getDishesInMenuChart() + " delicious dishes!");
-            System.out.println();
-            System.out.println("*** 1) Search for a plate. (currently ordered " + menu.getNumberOfDishes() + ")");
-            System.out.println("*** 2) Enter number of customers (currently " + menu.getEaters() + ")");
-            System.out.println("*** 3) Show order so far");
-            System.out.println("*** 4) Calculate price and bills");
-            System.out.println();
-            System.out.println("*** 99) Leave application. Ready to order!");
+                    "*** You can currently choose amongst " + menu.getDishesInMenuChart() + " delicious dishes! *");
+            System.out.println("***                                                      ***");
+            System.out
+                    .println("*** 1) Search for a plate.        (currently ordered " + menu.getNumberOfDishes() + ")");
+            System.out.println("*** 2) Change number of customers (currently " + menu.getEaters() + ")");
+            System.out.println("*** 3) Show receipt so far           (currently " + menu.getTotal() + "€ )");
+            System.out.println("*** 4) Calculate number of bills. ");
+            System.out.println("***                                                      ***");
+            System.out.println("*** 99) Leave application. Ready to order!               ***");
             System.out.println("************************************************************");
             final String userSelection = sc.nextLine();
             evaluateUserSelection(userSelection);
@@ -54,8 +57,10 @@ public class MenuConsoleController implements MenuController {
                 searchForAPlate();
                 break;
             case "3":
-                showOrderList();;
+                showOrderList();
                 break;
+            case "4":
+                calculateBills();
             default:
                 break;
         }
@@ -71,7 +76,9 @@ public class MenuConsoleController implements MenuController {
 
     @Override
     public void addCustomer() {
+        System.out.println("************************************************************");
         System.out.println(">>> Enter desired number of eaters (must be between 1 and 20)");
+        System.out.println("************************************************************");
         try {
             String input = sc.nextLine();
 
@@ -101,6 +108,11 @@ public class MenuConsoleController implements MenuController {
         System.out.println(">>> Type what you'd like to eat (in Spanish). Random suggestion: " + suggestion);
         String inputText = sc.nextLine();
         dishes = searchPlates(inputText);
+
+        if (menu.isLastSearchSuccessful() == false) {
+            System.out.println("*** We haven't found anything like " + inputText + ". Do not worry, though!");
+
+        }
 
         System.out.println("*** These are some dishes you could like. Choose with number: ");
         MenuDish selected = null;
@@ -135,18 +147,55 @@ public class MenuConsoleController implements MenuController {
 
     @Override
     public void showOrderList() {
+        float total = 0;
 
         if (menu.getDishes().size() > 0) {
+            System.out.println("************************************************************");
             System.out.println("*** This is what you have chosen so far:");
             for (MenuDish menuDish : menu.getDishes()) {
                 System.out.println("*** " + menuDish);
+                total += menuDish.getPrice();
             }
-        }else {
+            System.out.println("***");
+            System.out.println("*** Total bill: " + total + "€");
+            System.out.println("*** Total eaters: " + menu.getEaters());
+            System.out.println("*** Total dishes: " + menu.getNumberOfDishes());
+            System.out.println("***");
+            System.out.println("***");
+        } else {
             System.out.println("*** You haven't selected anything yet");
         }
         System.out.println();
         System.out.println("Press <ENTER> to continue ...");
         sc.nextLine();
+    }
+
+    @Override
+    /**
+     * Shows the total of bill and describes the minimum amount of each type of
+     * available bills
+     */
+    public void calculateBills() {
+
+        if (menu.getTotal() > 0) {
+            menu.calculateBills();
+            System.out.println("************************************************************");
+            System.out.println("*** We will need ");
+
+            // source:
+            // https://es.stackoverflow.com/questions/2464/c%C3%B3mo-iterar-a-trav%C3%A9s-de-un-hashmap
+            for (Map.Entry<Bitllet, Integer> entry : menu.getBitllets().entrySet()) {
+                System.out.println("*** " + entry.getValue().intValue() + " bills of " + entry.getKey().valor + "€");
+            }
+        }else {
+            System.out.println("*** Your order is still empty! ");
+
+        }
+        System.out.println("*** ");
+        System.out.println();
+        System.out.println("Press <ENTER> to continue ...");
+        sc.nextLine();
+
     }
 
 }

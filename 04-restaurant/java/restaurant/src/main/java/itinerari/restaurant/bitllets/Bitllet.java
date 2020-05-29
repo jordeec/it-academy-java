@@ -6,7 +6,8 @@ enum Colors {
     GREEN,
     BROWN,
     NAVY,
-    CYAN
+    CYAN,
+    LIGHT_BROWN
   }
 
  enum Divises {
@@ -16,8 +17,8 @@ enum Colors {
       BTC,
       CHF
   }
-
-public abstract class Bitllet {
+public class Bitllet {
     public Colors color;
     public Divises divisa;
+    public float valor;
 }

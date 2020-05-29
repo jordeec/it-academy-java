@@ -14,5 +14,6 @@ public interface MenuController {
     public List<MenuDish> searchPlates(String input);
     public MenuDish getRandomSuggestion();
     public void showOrderList();
+    public void calculateBills();
 
 }
