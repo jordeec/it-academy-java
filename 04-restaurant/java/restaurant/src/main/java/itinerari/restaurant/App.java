@@ -18,7 +18,7 @@ public final class App {
     public static void main(String[] args) {
         MenuController controller = new MenuConsoleController();
         controller.askForMenu();        // Fase 1 i Fase 2 (demanar fins que no hi hagi mes comensals)
-        controller.checkOutPrice();     // Fase 3. Calcular preu i nombre de bitllets
+                                        // Fase 3. Calcular preu i nombre de bitllets
 
     }
 
