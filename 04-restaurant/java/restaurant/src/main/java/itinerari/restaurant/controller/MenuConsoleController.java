@@ -16,7 +16,7 @@ public class MenuConsoleController implements MenuController {
 
     @Override
     /**
-     * Show a menu in console and reacts consequently
+     * Show a menu in console and reacts consequently. This is the main access point
      *
      */
     public synchronized Menu askForMenu() {
