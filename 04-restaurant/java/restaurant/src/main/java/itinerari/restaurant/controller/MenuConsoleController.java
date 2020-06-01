@@ -84,7 +84,7 @@ public class MenuConsoleController implements MenuController {
 
             int value = Integer.parseInt(input);
             /**
-             * TODO: BAD PRACTICE. This bussiness rule should be somewhere else!
+             * TODO: Discuss with mentor. BAD PRACTICE. This bussiness rule should be somewhere else?
              */
             if (value >= 1 && value <= 20) {
                 menu.setEaters(value);
