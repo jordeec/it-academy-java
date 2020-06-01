@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "js"
+			"path": "java"
 		},
 		{
-			"path": "java"
+			"path": "js-vanilla"
 		}
 	],
 	"settings": {
