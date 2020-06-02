@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant en javascript vanilla</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <h1>Welcome to IT Academy's restaurant</h1>
+        </div>
+        <div class="row justify-content-md-center">
+            <form action="index.html" method="GET">
+                <label for="eaters">Eaters: </label>
+                <input type="number" name="eaters" id="eaters" value="1">
+                <td><button type="button" class="btn btn-primary" onclick="fase2()">Fase 2. Afegir</button></td>
+                <td><button type="button" class="btn btn-primary" onclick="fase3()">Fase 3. Sumar</button></td>
+                <td><button type="button" class="btn btn-danger" onclick="getNewMenu()">Reset</button></td>
+
+            </form>
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-striped" id="availableDishes">
+                <thead>
+                    <tr>
+                        <th scope="col">This is the menu you can choose from:</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Pica pica La Casa (bombón de pollo, esperlán de pescado, frituras de malanga, croquetas de
+                        jamón, cebiche y pulpo)</td>
+                    <td>110</td>
+                    <td><button type="button" class="btn btn-primary" onclick="addDish(1)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Ensalada verde templada con tostadas de queso, tomate, cebolla y jamón</td>
+                    <td>550 </td>
+                    <td><button type="button" class="btn btn-primary" onclick="addDish(2)">Add</button></td>
+
+                </tr>
+                <tr>
+                    <td>Pastel de berenjena a los tres toques con pimientos, cebolla, tomate con yogurt y queso
+                        gratinado</td>
+                    <td>810 </td>
+                    <td><button type="button" class="btn btn-primary" onclick="addDish(3)">Add</button></td>
+                </tr>
+                <tr>
+                    <td>Crepes de espinacas con farsa de atún, pisto de vegetales con salsa de champiñones y
+                        remolacha</td>
+                    <td>1100 </td>
+                    <td><button type="button" class="btn btn-primary" onclick="addDish(4)">Add</button></td>
+
+
+                </tr>
+                <tr>
+                    <td>Crepes de espinacas rellenos de pollo a la jardinera</td>
+                    <td>1130 </td>
+                    <td><button type="button" class="btn btn-primary" onclick="addDish(5)">Add</button></td>
+
+
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-striped" id="selectedDishes">
+                <thead>
+                    <tr>
+                        <th scope="col">This is the menu you currently selected:</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>This is the total amount of the order</h3>
+            </div>
+            <div class="col-sm-3">
+                <h3 id="totalOrder">0 €</h3>
+            </div>
+        </div>
+        
+        
+
+</body>
+<!-- Jquery from Bootstrap-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<!-- Custom javascript for the exercise -->
+<script src='./restaurant.js'></script>
+
+
+</html>

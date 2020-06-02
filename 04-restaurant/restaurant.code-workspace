@@ -10,6 +10,7 @@
 	"settings": {
 		"java.configuration.updateBuildConfiguration": "automatic",
 		"maven.view": "flat",
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"liveServer.settings.multiRootWorkspaceName": "js-vanilla"
 	}
 }
