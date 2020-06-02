@@ -1,3 +1,6 @@
+//TODO: Discuss with Jose (mentoring)
+// Em vaig liar moltíssim en fer la part de javascript i vaig muntar un arc d'esglèsia amb una estructura maven, un framework per
+// dibuixar html des de Java (vaadin) i al final ho vaig deixar estar, aquest exercici en js conte lo mínim i imprescindible
 
 // Creeu una variable int per cada un dels bitllets que existeixen des de 5€ a 500€, haureu de crear un altre variable per guardar el preu total del menjar
 // Els bitllets estan en objectes a bitllets.js
