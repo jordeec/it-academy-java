@@ -64,15 +64,10 @@ public class VehicleController {
     }
 
     /**
-     * Adds some wheels to the vehicle, regarding of the kind of them
+     * Gets the contents of the controller list of objects
      * 
-     * @param vehicle
-     * @param wheels
+     * @return
      */
-    public void addWheels(final Vehicle vehicle, final Wheel... wheels) {
-        vehicle.addWheels(wheels);
-    }
-
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
@@ -122,5 +117,15 @@ public class VehicleController {
 
         // Call to method receving a list of parameters of type wheels
         addWheels(vehicle, frontWheel, backWheel);
+    }
+
+    /**
+     * Adds some wheels to the vehicle, regarding of the kind of them
+     * 
+     * @param vehicle
+     * @param wheels
+     */
+    public void addWheels(final Vehicle vehicle, final Wheel... wheels) {
+        vehicle.addWheels(wheels);
     }
 }
