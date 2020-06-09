@@ -1,4 +1,4 @@
-package itinerari.variables;
+package java.itinerari.variables;
 
 public  class Fase3 {
     public static void main(String[] args) {

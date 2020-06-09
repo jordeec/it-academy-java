@@ -1,4 +1,4 @@
-package itinerari.variables;
+package java.itinerari.variables;
 
 /**
  * Variables
