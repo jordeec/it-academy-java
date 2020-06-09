@@ -1,4 +1,4 @@
-package itinerari.jordic.video.app;
+package itinerari.jordic.video;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package itinerari.jordic.video;
+package itinerari.jordic.video.model;
 
 public class Video {
 

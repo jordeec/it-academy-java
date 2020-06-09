@@ -53,7 +53,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>itinerari.jordic.video.app.VideoApplication</mainClass>
+					<mainClass>itinerari.jordic.video.VideoApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
