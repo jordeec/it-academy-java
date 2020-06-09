@@ -1,11 +1,20 @@
 package itinerari.jordic.video.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Video {
 
+    @Id
     private String id;
     private String url;
     private String name;
     private String title;
+
+    public Video(){
+        super();
+    }
 
     public Video(String id, String url, String name, String title){
         super();

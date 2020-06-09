@@ -1,6 +1,7 @@
 package itinerari.jordic.video.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -20,12 +21,12 @@ public class VideoController implements ErrorController {
     private VideoService videoService;
 
     @RequestMapping("/videos")
-    public List<Video> getAllVideos(){
+    public List<Video> getAllVideos() {
         return videoService.getAllVideos();
     }
 
     @RequestMapping("/videos/{id}")
-    public Video getVideo(@PathVariable String id){
+    public Optional<Video> getVideo(@PathVariable String id) {
         return videoService.getVideo(id);
     }
     

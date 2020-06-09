@@ -1,14 +1,21 @@
 package itinerari.jordic.video.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import itinerari.jordic.video.model.Video;
+import itinerari.jordic.video.repository.VideoRepository;
 
 @Service
 public class VideoService {
+
+        @Autowired
+        private VideoRepository videoRepository;
+/*
         private List<Video> videos = new ArrayList<Video>(Arrays.asList(
                         new Video("1", "https://ftc.gov/quam/nec.jpg", "Metoprolol Succinate",
                                         "Bettie Page Reveals All"),
@@ -28,31 +35,34 @@ public class VideoService {
                                         "Coppertone TattooGuard Sunscreen", "Hotel"),
                         new Video("10", "http://macromedia.com/dapibus/at/diam/nam/tristique/tortor/eu.jsp",
                                         "BareMinerals", "Tokyo Decadence (Topâzu)")));
+/*
 
+        /**
+         * Calls JPA Repository and for each element in the table Videos it fills an
+         * element in the videos array List
+         * 
+         * @return
+         */
         public List<Video> getAllVideos() {
+                List<Video> videos = new ArrayList<Video>();
+                videoRepository.findAll().forEach(videos::add);
+
                 return videos;
         }
 
         public void addVideo(Video video) {
-                videos.add(video);
+                videoRepository.save(video);
         }
 
         public void deleteVideo(String id) {
-                videos.removeIf(t -> t.getId().equals(id));
+                videoRepository.deleteById(id);
         }
 
-        public Video getVideo(String id) {
-                return videos.stream().filter(v -> v.getId().equals(id)).findFirst().get();
+        public Optional<Video> getVideo(String id) {
+                return videoRepository.findById(id);
         }
 
         public void updateVideo(String id, Video video) {
-                int i = 0;
-                for (Video v : videos) {
-                        if (v.getId().equals(id)) {
-                                videos.set(i, video);
-                                break;
-                        }
-                        i++;
-                }
+                videoRepository.save(video);
         }
 }
