@@ -20,6 +20,11 @@ public class VideoController implements ErrorController {
     @Autowired
     private VideoService videoService;
 
+    @RequestMapping("/users/{id}/videos")
+    public List<Video> getAllVideosByUserId(@PathVariable String userId){
+        return videoService.getVideosByUserVideoId(userId);
+    }
+
     @RequestMapping("/videos")
     public List<Video> getAllVideos() {
         return videoService.getAllVideos();
@@ -45,17 +50,11 @@ public class VideoController implements ErrorController {
         videoService.deleteVideo(id);
     }
 
-	@Override
-	public String getErrorPath() {
-		return "/error";
-	}
-
-    @RequestMapping(value = "/error")
-    public String error() {
-        return "Error handling";
+    @Override
+    public String getErrorPath() {
+        // TODO Auto-generated method stub
+        return null;
     }
-
-
 
     
 }
