@@ -1,9 +1,12 @@
 package itinerari.jordic.video.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +20,8 @@ import lombok.Setter;
  */
 
 @Entity
-public class UserVideo {
+@Table(name = "USERVIDEO")
+public class User {
     @Id
     @Getter @Setter    
     private String id;
@@ -28,11 +32,14 @@ public class UserVideo {
     @Getter @Setter
     private Date regDate;
 
-    public UserVideo(){
+    @OneToMany(mappedBy = "videos")
+    private Set<Video> videos;
+
+    public User(){
         super();
     }
 
-    public UserVideo(String id, String name, String surname) {
+    public User(String id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;

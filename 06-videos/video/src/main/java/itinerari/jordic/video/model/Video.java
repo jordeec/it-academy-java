@@ -2,6 +2,7 @@ package itinerari.jordic.video.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Getter;
@@ -25,9 +26,11 @@ public class Video {
     @Getter @Setter
     private String title;
     
+    // Every video 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     @Getter @Setter
-    private UserVideo userVideo;
+    private User user;
 
     public Video(){
         super();

@@ -35,9 +35,9 @@ public class VideoController implements ErrorController {
         return videoService.getVideo(id);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value="/videos")
-    public void addVideo(@RequestBody Video video){
-        videoService.addVideo(video);
+    @RequestMapping(method = RequestMethod.POST, value="/users/{id}/videos")
+    public void addVideo(@RequestBody Video video, @PathVariable String userId){
+        videoService.addVideo(video, userId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/videos/{id}")
@@ -52,7 +52,6 @@ public class VideoController implements ErrorController {
 
     @Override
     public String getErrorPath() {
-        // TODO Auto-generated method stub
         return null;
     }
 
