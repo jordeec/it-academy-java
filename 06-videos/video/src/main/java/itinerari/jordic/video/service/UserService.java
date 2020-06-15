@@ -30,19 +30,19 @@ public class UserService {
                 return users;
         }
 
-        public void addUserVideo(User user) {
+        public void addUser(User user) {
                 userRepository.save(user);
         }
 
-        public void deleteUserVideo(String id) {
+        public void deleteUser(String id) {
                 userRepository.deleteById(id);
         }
 
-        public Optional<User> getUserVideo(String id) {
+        public Optional<User> getUser(String id) {
                 return userRepository.findById(id);
         }
 
-        public void updateUserVideo(String id, User tag) {
+        public void updateUser(String id, User tag) {
                 userRepository.save(tag);
         }
 }

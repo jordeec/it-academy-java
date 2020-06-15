@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,24 +21,24 @@ public class VideoController implements ErrorController {
     @Autowired
     private VideoService videoService;
 
-    @RequestMapping("/users/{id}/videos")
-    public List<Video> getAllVideosByUserId(@PathVariable String userId){
-        return videoService.getVideosByUserVideoId(userId);
+    @GetMapping("/users/{id}/videos")
+    public List<Video> getAllVideosByUserId(@PathVariable String id){
+        return videoService.getVideosByUserVideoId(id);
     }
 
-    @RequestMapping("/videos")
+    @GetMapping("/videos")
     public List<Video> getAllVideos() {
         return videoService.getAllVideos();
     }
 
-    @RequestMapping("/videos/{id}")
+    @GetMapping("/videos/{id}")
     public Optional<Video> getVideo(@PathVariable String id) {
         return videoService.getVideo(id);
     }
     
     @RequestMapping(method = RequestMethod.POST, value="/users/{id}/videos")
-    public void addVideo(@RequestBody Video video, @PathVariable String userId){
-        videoService.addVideo(video, userId);
+    public void addVideo(@RequestBody Video video, @PathVariable String id){
+        videoService.addVideo(video, id);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/videos/{id}")

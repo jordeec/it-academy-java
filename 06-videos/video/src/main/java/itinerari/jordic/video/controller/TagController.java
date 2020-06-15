@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import itinerari.jordic.video.model.Tag;
@@ -20,25 +22,46 @@ public class TagController implements ErrorController {
     @Autowired
     private TagService tagService;
 
-    @RequestMapping("/tags")
+    @GetMapping("/tags")
     public List<Tag> getAllTags() {
         return tagService.getAllTags();
     }
 
-    @RequestMapping("/tags/{id}")
-    public Optional<Tag> getVideo(@PathVariable String id) {
+    @GetMapping("/tags/{id}")
+    public Optional<Tag> getTag(@PathVariable String id) {
         return tagService.getTag(id);
     }
-    
-    @RequestMapping(method = RequestMethod.POST, value="/tags")
-    public void addTag(@RequestBody Tag video){
-        tagService.addTag(video);
+
+    /**
+     In order to save a Tag in database we must refer to the video it belongs to, hence we must provide
+     also the corresponding user since according to the model, every video must belong to a single user.
+     Nonetheless, we can save a video without tags or we can assign the same tag to several videos
+
+     * @param video
+     * @param userId
+     * @param videoId
+     */
+    @RequestMapping(method = RequestMethod.POST, value="users/{userId}/videos/{videoId}/tags")
+    public void addTag(@RequestBody Tag video, @RequestParam String userId, @RequestParam String videoId){
+        tagService.addTag(video, userId, videoId);
     }
 
+    /**
+     * We allow the modification of a tag directly from the request
+     * 
+     * @param tag
+     * @param id
+     */
     @RequestMapping(method = RequestMethod.PUT, value = "/tags/{id}")
-    public void updateTag(@RequestBody Tag video, @PathVariable String id){
-        tagService.updateTag(id, video);
+    public void updateTag(@RequestBody Tag tag, @PathVariable String id){
+        tagService.updateTag(id, tag);
     }
+
+    /**
+     * We allow deleting a given tag from the request
+     * 
+     * @param id
+     */
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/tags/{id}")
     public void deleteTag(@PathVariable String id){

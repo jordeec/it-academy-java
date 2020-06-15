@@ -29,7 +29,7 @@ public class TagService {
                 return tags;
         }
 
-        public void addTag(Tag tag) {
+        public void addTag(Tag tag, String userId, String videoId) {
                 tagRepository.save(tag);
         }
 

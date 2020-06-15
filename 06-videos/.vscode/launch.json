@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Spring Boot-VideoApplication<video>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "itinerari.jordic.video.VideoApplication",
+            "projectName": "video",
+            "args": ""
+        }
+    ]
+}

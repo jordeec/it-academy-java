@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import itinerari.jordic.video.model.User;
 import itinerari.jordic.video.model.Video;
 import itinerari.jordic.video.repository.UserRepository;
 import itinerari.jordic.video.repository.VideoRepository;
@@ -40,13 +41,14 @@ public class VideoService {
          * @param userId User's identifier
          */
         public void addVideo(final Video video, final String userId) {
-/*
-                return userVideoRepository.findById(userId).map(user -> {
-                        // For each user found in the user repository ...
-                        video.setUserVideo(user);
+
+                Optional<User> user = userRepository.findById(userId);
+
+                if (user.isPresent()) {
+                        video.setUser(user.get());
                         videoRepository.save(video);
-                }).orElseThrow(() -> new ResourceNotFoundException()); // If the user is not found we throw an exception
-*/
+                }
+
         }
 
         public void deleteVideo(final String id) {
