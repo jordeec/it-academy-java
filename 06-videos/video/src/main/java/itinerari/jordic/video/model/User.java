@@ -1,11 +1,14 @@
 package itinerari.jordic.video.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,10 +26,15 @@ import lombok.Setter;
 @Entity
 // We use the table annotation to avoid conflicts in the database where USER is very likely a reserved word
 @Table(name = "USERVIDEO")
-public class User {
+public class User implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5444434728847905474L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter    
-    private String id;
+    private Long id;
     @Getter @Setter
     private String name;
     @Getter @Setter
@@ -34,7 +42,7 @@ public class User {
     @Getter @Setter
     private Date regDate;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     @Getter @Setter
     private Collection <Video> video = new ArrayList<Video>();
 
@@ -45,10 +53,18 @@ public class User {
         this.regDate = new Date(System.currentTimeMillis());
     }
 
-    public User(String id, String name, String surname) {
+    public User(Long id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
     }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", regDate=" + regDate + ", surname=" + surname + ", video="
+                + video + "]";
+    }
+
+    
     
 }

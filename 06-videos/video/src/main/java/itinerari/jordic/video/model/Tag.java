@@ -1,12 +1,9 @@
 package itinerari.jordic.video.model;
 
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,14 +14,11 @@ import lombok.Setter;
  * Setters and getters are omitted due to the lombok framework
  */
 @Entity
-public class Tag  implements Serializable {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 6589667351763064641L;
+public class Tag  {
     @Id
     @Getter @Setter
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Getter @Setter
     private String description;
     @Getter @Setter
@@ -37,6 +31,13 @@ public class Tag  implements Serializable {
 
     public Tag() {
     }
+
+    @Override
+    public String toString() {
+        return "Tag [description=" + description + ", id=" + id + ", video=" + video + "]";
+    }
+
+    
 
     
 }

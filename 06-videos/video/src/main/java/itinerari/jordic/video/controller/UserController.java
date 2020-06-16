@@ -27,7 +27,7 @@ public class UserController implements ErrorController {
     }
 
     @GetMapping("/users/{id}")
-    public Optional<User> getUser(@PathVariable String id) {
+    public Optional<User> getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
     
@@ -42,7 +42,7 @@ public class UserController implements ErrorController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
-    public void deleteUser(@PathVariable String id){
+    public void deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
     }
 

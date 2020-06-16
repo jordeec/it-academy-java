@@ -2,12 +2,13 @@ package itinerari.jordic.video.repository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import itinerari.jordic.video.model.Video;
 
-public interface VideoRepository extends CrudRepository<Video, String> {
+public interface VideoRepository extends JpaRepository<Video, Long> {
+
+	List<Video> findByUserId(Long userid);
     
-    public List<Video> findByUserVideo(String userid);
     
 }

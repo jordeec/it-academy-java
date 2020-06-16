@@ -28,7 +28,7 @@ public class TagController implements ErrorController {
     }
 
     @GetMapping("/tags/{id}")
-    public Optional<Tag> getTag(@PathVariable String id) {
+    public Optional<Tag> getTag(@PathVariable Long id) {
         return tagService.getTag(id);
     }
 
@@ -53,7 +53,7 @@ public class TagController implements ErrorController {
      * @param id
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/tags/{id}")
-    public void updateTag(@RequestBody Tag tag, @PathVariable String id){
+    public void updateTag(@RequestBody Tag tag, @PathVariable Long id){
         tagService.updateTag(id, tag);
     }
 
@@ -64,7 +64,7 @@ public class TagController implements ErrorController {
      */
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/tags/{id}")
-    public void deleteTag(@PathVariable String id){
+    public void deleteTag(@PathVariable Long id){
         tagService.deleteTag(id);
     }
 

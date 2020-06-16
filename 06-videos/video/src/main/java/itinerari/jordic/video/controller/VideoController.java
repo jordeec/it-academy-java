@@ -22,8 +22,8 @@ public class VideoController implements ErrorController {
     private VideoService videoService;
 
     @GetMapping("/users/{id}/videos")
-    public List<Video> getAllVideosByUserId(@PathVariable String id){
-        return videoService.getVideosByUserVideoId(id);
+    public List<Video> getAllVideosByUserId(@PathVariable Long id) {
+        return videoService.getVideosByUserId(id);
     }
 
     @GetMapping("/videos")
@@ -31,13 +31,13 @@ public class VideoController implements ErrorController {
         return videoService.getAllVideos();
     }
 
-    @GetMapping("/videos/{id}")
-    public Optional<Video> getVideo(@PathVariable String id) {
-        return videoService.getVideo(id);
+    @GetMapping("/users/{idUser}/videos/{idVideo}")
+    public Optional<Video> getVideo(@PathVariable Long idUser, @PathVariable Long idVideo) {
+        return videoService.getVideoByUserId(idUser, idVideo);
     }
     
     @RequestMapping(method = RequestMethod.POST, value="/users/{id}/videos")
-    public void addVideo(@RequestBody Video video, @PathVariable String id){
+    public void addVideo(@RequestBody Video video, @PathVariable Long id) {
         videoService.addVideo(video, id);
     }
 
@@ -47,7 +47,7 @@ public class VideoController implements ErrorController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/videos/{id}")
-    public void deleteVideo(@PathVariable String id){
+    public void deleteVideo(@PathVariable Long id) {
         videoService.deleteVideo(id);
     }
 

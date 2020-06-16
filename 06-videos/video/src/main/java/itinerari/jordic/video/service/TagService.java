@@ -33,15 +33,15 @@ public class TagService {
                 tagRepository.save(tag);
         }
 
-        public void deleteTag(String id) {
+        public void deleteTag(Long id) {
                 tagRepository.deleteById(id);
         }
 
-        public Optional<Tag> getTag(String id) {
+        public Optional<Tag> getTag(Long id) {
                 return tagRepository.findById(id);
         }
 
-        public void updateTag(String id, Tag tag) {
+        public void updateTag(Long id, Tag tag) {
                 tagRepository.save(tag);
         }
 
