@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>EX 04. Rockets </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="row shadow-lg">
+            <h1 class="mx5">IT Academy's rocket launch!</h1>
+        </div>
+        <div class="row">
+            <p th:text="'Message from Spring Controller: ' + ${status} + '!'"></p>
+        </div>
+        <div class="row shadow-lg">
+            <div class="col-2 ml-5">
+                <div class="row">
+                    <div class="col"><span th:text="${rocket1?.code}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col"><span th:text="'${#strings.toString(rocket1?.maxPropulsors)}' + ' motors available' " ></span></div>
+                </div>
+                <div class="row d-flex bd-highlight mb-3">
+                    <div class="col p-2 col-8">
+                        <input type="number" name="rocket1-speed" id="rocket1-speed" value="${rocket1?.targetSpeed}">
+                    </div>
+                    <div class="col align-items ml-auto p-2">
+                        <button type="button" class="btn btn-danger ">Race</button>
+                    </div>
+                </div>
+                <div class="row mx-1">
+                    <p>Status of the first rocket</p>
+                </div>
+            </div>
+            <div class="col-8 mx-5">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Max</th>
+                            <th scope="col">Target</th>
+                            <th scope="col">Progress (current)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><span id="r1e1max">
+                                    <p th:text="${r1e1max}"></p>
+                                </span></td>
+                            <td><span id="r1e1tgt"></span>50</td>
+                            <td><span id="r1e1curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><span id="r1e2max"></span>100</td>
+                            <td><span id="r1e2tgt"></span>50</td>
+                            <td><span id="r1e2curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td><span id="r1e3max"></span>100</td>
+                            <td><span id="r1e3tgt"></span>50</td>
+                            <td><span id="r1e3curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row shadow-lg">
+            <div class="col-2 ml-5">
+                <div class="row">
+                    <div class="col">Rocket #2</div>
+                </div>
+                <div class="row">
+                    <div class="col">6 motors available</div>
+                </div>
+                <div class="row d-flex bd-highlight mb-3">
+                    <div class="col p-2 col-8">
+                        <input type="number" name="rocket2-speed" id="rocket2-speed">
+                    </div>
+                    <div class="col align-items ml-auto p-2">
+                        <button type="button" class="btn btn-danger">Race</button>
+                    </div>
+                </div>
+                <div class="row mx-1">
+                    <p>Status of the second rocket</p>
+                </div>
+            </div>
+            <div class="col-8 mx-5">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Max</th>
+                            <th scope="col">Target</th>
+                            <th scope="col">Progress (current)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><span id="r2e1max"></span>100</td>
+                            <td><span id="r2e1tgt"></span>50</td>
+                            <td><span id="r2e1curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><span id="r2e2max"></span>100</td>
+                            <td><span id="r2e2tgt"></span>50</td>
+                            <td><span id="r2e2curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td><span id="r2e3max"></span>100</td>
+                            <td><span id="r2e3tgt"></span>50</td>
+                            <td><span id="r2e3curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td><span id="r2e4max"></span>100</td>
+                            <td><span id="r2e4tgt"></span>50</td>
+                            <td><span id="r2e4curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td><span id="r2e5max"></span>100</td>
+                            <td><span id="r2e5tgt"></span>50</td>
+                            <td><span id="r2e5curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td><span id="r2e6max"></span>100</td>
+                            <td><span id="r2e6tgt"></span>50</td>
+                            <td><span id="r2e6curr">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
