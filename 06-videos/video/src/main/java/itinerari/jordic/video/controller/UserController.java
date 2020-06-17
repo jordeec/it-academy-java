@@ -36,9 +36,9 @@ public class UserController implements ErrorController {
         userService.addUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
-    public void updateUser(@RequestBody User user, @PathVariable String id){
-        userService.updateUser(id, user);
+    @RequestMapping(method = RequestMethod.PUT, value = "/users/{userId}")
+    public User updateUser(@RequestBody User user, @PathVariable Long userId){
+        return userService.updateUser(userId, user);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")

@@ -41,9 +41,9 @@ public class VideoController implements ErrorController {
         videoService.addVideo(video, id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/videos/{id}")
-    public void updateVideo(@RequestBody Video video, @PathVariable String id){
-        videoService.updateVideo(id, video);
+    @RequestMapping(method = RequestMethod.PUT, value = "/users/{idUser}/videos/{idVideo}")
+    public void updateVideo(@RequestBody Video video, @PathVariable Long idUser, @PathVariable Long idVideo){
+        videoService.updateVideo(idUser, idVideo, video);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/videos/{id}")

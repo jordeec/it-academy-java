@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import itinerari.jordic.video.model.Tag;
@@ -32,6 +31,16 @@ public class TagController implements ErrorController {
         return tagService.getTag(id);
     }
 
+    @GetMapping("/users/{userId}/videos/{videoId}/tags")
+    public List<Tag> getAllTagsByUserByVideo(@PathVariable Long userId, @PathVariable Long videoId) {
+        return tagService.getAllTagsByUserByVideo(userId, videoId);
+    }
+
+    @GetMapping("/videos/{videoId}/tags")
+    public List<Tag> getAllTagsByVideo( @PathVariable Long videoId) {
+        return tagService.getAllTagsByVideo(videoId);
+    }
+
     /**
      In order to save a Tag in database we must refer to the video it belongs to, hence we must provide
      also the corresponding user since according to the model, every video must belong to a single user.
@@ -42,7 +51,7 @@ public class TagController implements ErrorController {
      * @param videoId
      */
     @RequestMapping(method = RequestMethod.POST, value="users/{userId}/videos/{videoId}/tags")
-    public void addTag(@RequestBody Tag video, @RequestParam String userId, @RequestParam String videoId){
+    public void addTag(@RequestBody Tag video, @PathVariable Long userId, @PathVariable Long videoId){
         tagService.addTag(video, userId, videoId);
     }
 

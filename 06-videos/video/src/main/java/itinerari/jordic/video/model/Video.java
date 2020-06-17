@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import org.springframework.data.annotation.PersistenceConstructor;
 
 import lombok.Getter;
@@ -54,9 +56,15 @@ public class Video implements Serializable {
     // Each video contains a list of tags
     @Getter @Setter
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "video", nullable = true)
+    @JoinColumn(name = "video", nullable = false)
+    @JsonIgnore
     private Collection<Tag> tags = new ArrayList<Tag>();
-    
+
+    /** constructors */
+
+    public Video() {
+    }
+
     public Video(Long id, String url, String name, String title){
         this.id = id;
         this.url = url;
@@ -65,8 +73,8 @@ public class Video implements Serializable {
 
     }
 
-    public Video() {
-    }
+    /** Overrides */
+    
 
     @Override
     public String toString() {

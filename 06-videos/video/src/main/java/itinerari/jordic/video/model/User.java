@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,9 +44,12 @@ public class User implements Serializable {
     @Getter @Setter
     private Date regDate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Getter @Setter
-    private Collection <Video> video = new ArrayList<Video>();
+    @JsonIgnore
+    private Collection <Video> videos = new ArrayList<Video>();
+
+    /** Constructors */
 
     public User(){
         super();
@@ -58,10 +64,12 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
+    /** Overrides  */
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", regDate=" + regDate + ", surname=" + surname + ", video="
-                + video + "]";
+        return "User [id=" + id + ", name=" + name + ", regDate=" + regDate + ", surname=" + surname + ", videos="
+                + videos.size() + "]";
     }
 
     

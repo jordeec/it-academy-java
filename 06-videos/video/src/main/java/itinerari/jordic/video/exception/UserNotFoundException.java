@@ -1,6 +1,6 @@
 package itinerari.jordic.video.exception;
 
-public class UserNotFoundException extends RuntimeException {
+public class UserNotFoundException extends VideoRESTAppException {
 
    
 	public UserNotFoundException(String msg) {

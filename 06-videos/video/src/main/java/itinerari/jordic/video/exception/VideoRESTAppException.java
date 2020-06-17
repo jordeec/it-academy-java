@@ -1,8 +1,8 @@
 package itinerari.jordic.video.exception;
 
-public class VideoNotFoundException extends VideoRESTAppException {
+public class VideoRESTAppException extends RuntimeException{
 
-    public VideoNotFoundException(String msg) {
+    public VideoRESTAppException(String msg) {
         super(msg);
 	}
 
